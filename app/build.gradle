@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.metanoiaunlimited.heicconverter'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.metanoiaunlimited.heicconverter"
         minSdk 28
-        targetSdk 35
+        targetSdk 36
         versionCode 1
         versionName "1.0"
 
@@ -44,7 +44,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.15.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
@@ -62,15 +62,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     
+    // Google AdMob
+    implementation 'com.google.android.gms:play-services-ads:24.1.0'
+    
     // Billing
     implementation 'com.android.billingclient:billing-ktx:7.1.1'
     
-    // Video Conversion (FFmpegKit) - Using another highly stable LTS version
-    implementation 'com.arthenica:ffmpeg-kit-full:4.4.LTS'
+    // Video Conversion (FFmpegKit) - Needs correct version or alternative implementation
+    // TODO: Find correct FFmpegKit version or implement alternative video conversion
+    // implementation 'com.arthenica:ffmpeg-kit-full:5.1'
     
     // Image loading
     implementation 'com.github.bumptech.glide:glide:4.16.0'
-    implementation 'androidx.activity:activity-ktx:1.13.0-alpha01'
+    implementation 'androidx.activity:activity-ktx:1.9.3'
     
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

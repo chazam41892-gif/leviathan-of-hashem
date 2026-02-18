@@ -71,10 +71,11 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         </activity>
 
-        <service
+        <!-- Temporarily disabled until FFmpegKit dependency is resolved -->
+        <!--<service
             android:name=".VideoConvertService"
             android:exported="false"
-            android:foregroundServiceType="mediaProcessing" />
+            android:foregroundServiceType="mediaProcessing" />-->
 
     </application>
 
