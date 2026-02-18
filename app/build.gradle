@@ -68,9 +68,7 @@ dependencies {
     // Billing
     implementation 'com.android.billingclient:billing-ktx:7.1.1'
     
-    // Video Conversion (FFmpegKit) - Needs correct version or alternative implementation
-    // TODO: Find correct FFmpegKit version or implement alternative video conversion
-    // implementation 'com.arthenica:ffmpeg-kit-full:5.1'
+    // No external video conversion library needed - using Android MediaCodec
     
     // Image loading
     implementation 'com.github.bumptech.glide:glide:4.16.0'
