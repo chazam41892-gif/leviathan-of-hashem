@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">HEIC Converter</string>
+    <string name="selected_images">%1$d images selected</string>
+    <string name="no_images_selected">Please select images first</string>
+    <string name="conversion_complete">Conversion complete!</string>
+    <string name="saved_to">Saved to: %1$s</string>
+    <string name="conversion_failed">Conversion failed. Please try again.</string>
+
+    <!-- UI Elements -->
+    <string name="select_images">Select Images</string>
+    <string name="convert">Convert</string>
+    <string name="quality">Quality</string>
+    <string name="high_quality">High</string>
+    <string name="medium_quality">Medium</string>
+    <string name="low_quality">Low</string>
+    <string name="jpeg">JPEG</string>
+    <string name="png">PNG</string>
+    <string name="webp">WebP</string>
+
+    <!-- Premium / Billing -->
+    <string name="premium_title">Upgrade to Premium</string>
+    <string name="free_limit">You have reached the free limit of 5 images. Upgrade to Metanoia Premium for unlimited conversions and no ads!</string>
+    <string name="upgrade_now">Upgrade Now</string>
+    <string name="restore_purchase">Restore Purchase</string>
+    <string name="premium_active">Premium Active - Thank you for supporting Metanoia Unlimited LLC!</string>
+    <string name="already_premium">You are a Premium user</string>
+    <string name="unlock_premium">Unlock Premium</string>
+    <string name="premium_description">Unlimited conversions, No ads, Priority support</string>
+
+    <!-- Permissions -->
+    <string name="permission_required">This app needs storage access to select and save images. Please enable it in settings.</string>
+
+    <!-- Account / Marketing -->
+    <string name="welcome_metanoia">Welcome to the Metanoia Ecosystem</string>
+    <string name="marketing_consent">By signing in, you agree to receive updates about new apps and services from Metanoia Unlimited LLC.</string>
+
+    <!-- Legal -->
+    <string name="privacy_policy_url">https://metanoiaunlimited.com/privacy-policy</string>
+    <string name="terms_service">Terms of Service</string>
+    <string name="about_us">About Metanoia Unlimited LLC</string>
+
+    <!-- Firebase -->
+    <string name="default_web_client_id">406748052446-rgeiedjc4ce742cp9j23kqol3ltg5k97.apps.googleusercontent.com</string>
+</resources>

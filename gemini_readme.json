@@ -1,0 +1,827 @@
+Gradle needs to know where it can download the dependencies used in the project.
+
+For example, the com.google.guava:guava:30.0-jre dependency can be downloaded from the public Maven Central repository mavenCentral(). Gradle will find and download the guava source code (as a jar) from Maven Central and use it build the project.
+
+You can add any number of repositories for your dependencies by configuring the repositories block in your build.gradle(.kts) file:
+
+KotlinGroovy
+build.gradle.kts
+repositories {
+mavenCentral()
+maven {
+url = uri("https://company/com/maven2")
+}
+mavenLocal()
+flatDir {
+dirs("libs")
+}
+}
+
+Public repository
+Private/Custom repository
+Local repository
+File location
+Gradle can resolve dependencies from one or many repositories based on Maven, Ivy or flat directory formats.
+
+If a library is available from more than one of the listed repositories, Gradle will simply pick the first one.
+
+Declaring a public repository
+Organizations building software may want to leverage public binary repositories to download and consume open source dependencies. Popular public repositories include Maven Central and the Google Android repository.
+
+Gradle provides built-in shorthand notations for these widely-used repositories:
+
+KotlinGroovy
+build.gradle.kts
+repositories {
+mavenCentral()
+google()
+gradlePluginPortal()
+}
+
+Under the covers Gradle resolves dependencies from the respective URL of the public repository defined by the shorthand notation. All shorthand notations are available via the RepositoryHandler API.
+
+Declaring a private or custom repository
+Most enterprise projects establish a binary repository accessible only within their intranet. In-house repositories allow teams to publish internal binaries, manage users and security, and ensure uptime and availability.
+
+Specifying a custom URL is useful for declaring less popular but publicly-available repositories. Repositories with custom URLs can be specified as Maven or Ivy repositories by calling the corresponding methods available on the RepositoryHandler API:
+
+KotlinGroovy
+build.gradle.kts
+repositories {
+maven {
+url = uri("https://maven-central.storage.apis.com")
+}
+ivy {
+url = uri("https://github.com/ivy-rep/")
+}
+}
+
+Declaring a local repository
+Gradle can consume dependencies available in a local Maven repository.
+
+To declare the local Maven cache as a repository, add this to your build script:
+
+KotlinGroovy
+build.gradle.kts
+repositories {
+mavenLocal()
+}
+
+Understanding supported repository types
+Gradle supports a wide range of sources for dependencies, both in terms of format and in terms of connectivity. You may resolve dependencies from:
+
+Different formats
+
+a Maven compatible artifact repository (e.g: Maven Central)
+
+an Ivy compatible artifact repository (including custom layouts)
+
+local (flat) directories
+
+with different connectivity
+
+authenticated repositories
+
+a wide variety of remote protocols such as HTTPS, SFTP, AWS S3 and Google Cloud Storage based on the presence of artifacts.
+
+Here is a quick snapshot:
+
+build.gradle
+repositories {
+
+// Ivy Repository with Custom Layout
+ivy {
+url = 'https://your.ivy.repo/url'
+layout 'pattern', {
+ivy '[organisation]/[module]/[revision]/[type]s/[artifact]-[revision].[ext]'
+artifact '[organisation]/[module]/[revision]/[type]s/[artifact]-[revision].[ext]'
+}
+}
+
+// Authenticated HTTPS Maven Repository
+maven {
+url = 'https://your.secure.repo/url'
+credentials {
+username = 'your-username'
+password = 'your-password'
+}
+}
+
+// SFTP Repository
+maven {
+url = 'sftp://your.sftp.repo/url'
+credentials {
+username = 'your-username'
+password = 'your-password'
+}
+}
+
+// AWS S3 Repository
+maven {
+url = "s3://your-bucket/repository-path"
+credentials(AwsCredentials) {
+accessKey = 'your-access-key'
+secretKey = 'your-secret-key'
+}
+}
+
+// Google Cloud Storage Repository
+maven {
+url = "gcs://your-bucket/repository-path"
+}
+}
+
+
+
+
+Publisher ID
+
+pub-9458763618167975
+AdSense customer ID
+
+889-957-2012
+3. Declaring repositories
+Contents
+Declaring a public repository
+Declaring a private or custom repository
+Declaring a local repository
+Understanding supported repository types
+Gradle needs to know where it can download the dependencies used in the project.
+
+For example, the com.google.guava:guava:30.0-jre dependency can be downloaded from the public Maven Central repository mavenCentral(). Gradle will find and download the guava source code (as a jar) from Maven Central and use it build the project.
+
+You can add any number of repositories for your dependencies by configuring the repositories block in your build.gradle(.kts) file:
+
+KotlinGroovy
+build.gradle.kts
+repositories {
+mavenCentral()
+maven {
+url = uri("https://company/com/maven2")
+}
+mavenLocal()
+flatDir {
+dirs("libs")
+}
+}
+
+Public repository
+Private/Custom repository
+Local repository
+File location
+Gradle can resolve dependencies from one or many repositories based on Maven, Ivy or flat directory formats.
+
+If a library is available from more than one of the listed repositories, Gradle will simply pick the first one.
+
+Declaring a public repository
+Organizations building software may want to leverage public binary repositories to download and consume open source dependencies. Popular public repositories include Maven Central and the Google Android repository.
+
+Gradle provides built-in shorthand notations for these widely-used repositories:
+
+KotlinGroovy
+build.gradle.kts
+repositories {
+mavenCentral()
+google()
+gradlePluginPortal()
+}
+
+Under the covers Gradle resolves dependencies from the respective URL of the public repository defined by the shorthand notation. All shorthand notations are available via the RepositoryHandler API.
+
+Declaring a private or custom repository
+Most enterprise projects establish a binary repository accessible only within their intranet. In-house repositories allow teams to publish internal binaries, manage users and security, and ensure uptime and availability.
+
+Specifying a custom URL is useful for declaring less popular but publicly-available repositories. Repositories with custom URLs can be specified as Maven or Ivy repositories by calling the corresponding methods available on the RepositoryHandler API:
+
+KotlinGroovy
+build.gradle.kts
+repositories {
+maven {
+url = uri("https://maven-central.storage.apis.com")
+}
+ivy {
+url = uri("https://github.com/ivy-rep/")
+}
+}
+
+Declaring a local repository
+Gradle can consume dependencies available in a local Maven repository.
+
+To declare the local Maven cache as a repository, add this to your build script:
+
+KotlinGroovy
+build.gradle.kts
+repositories {
+mavenLocal()
+}
+
+Understanding supported repository types
+Gradle supports a wide range of sources for dependencies, both in terms of format and in terms of connectivity. You may resolve dependencies from:
+
+Different formats
+
+a Maven compatible artifact repository (e.g: Maven Central)
+
+an Ivy compatible artifact repository (including custom layouts)
+
+local (flat) directories
+
+with different connectivity
+
+authenticated repositories
+
+a wide variety of remote protocols such as HTTPS, SFTP, AWS S3 and Google Cloud Storage based on the presence of artifacts.
+
+Here is a quick snapshot:
+
+build.gradle
+repositories {
+
+// Ivy Repository with Custom Layout
+ivy {
+url = 'https://your.ivy.repo/url'
+layout 'pattern', {
+ivy '[organisation]/[module]/[revision]/[type]s/[artifact]-[revision].[ext]'
+artifact '[organisation]/[module]/[revision]/[type]s/[artifact]-[revision].[ext]'
+}
+}
+
+// Authenticated HTTPS Maven Repository
+maven {
+url = 'https://your.secure.repo/url'
+credentials {
+username = 'your-username'
+password = 'your-password'
+}
+}
+
+// SFTP Repository
+maven {
+url = 'sftp://your.sftp.repo/url'
+credentials {
+username = 'your-username'
+password = 'your-password'
+}
+}
+
+// AWS S3 Repository
+maven {
+url = "s3://your-bucket/repository-path"
+credentials(AwsCredentials) {
+accessKey = 'your-access-key'
+secretKey = 'your-secret-key'
+}
+}
+
+// Google Cloud Storage Repository
+maven {
+url = "gcs://your-bucket/repository-path"
+}
+}
+
+Next Step: Learn about Centralizing Dependencies >>
+
+{
+  "project": "HeicConverter",
+  "date": "2026-02-14",
+  "goal": "Add user login (Email/Password + Google Sign-In), admin-only dashboard for Chaz, opt-in marketing, and analytics/crash reporting. NO backdoors. NO silent email exfiltration.",
+  "admin_accounts": {
+    "allowed_admin_emails": [
+      "metanoiaunlimited418@gmail.com",
+      "chazam41892@gmail.com"
+    ],
+    "rule": "Admin access is granted ONLY if signed-in Firebase user email is in allowed_admin_emails OR has a server-set custom claim admin=true. Do NOT implement a master username/password backdoor."
+  },
+  "auth": {
+    "provider": "Firebase Authentication",
+    "enabled_methods": [
+      "Email/Password",
+      "Google Sign-In"
+    ],
+    "screens_required": [
+      "AuthLandingActivity (Choose Google or Email)",
+      "EmailLoginActivity (Login/Register/Reset Password)",
+      "MainActivity (App UI after login)",
+      "AdminDashboardActivity (Admin only)"
+    ],
+    "requirements": [
+      "If user is not logged in, they must be routed to AuthLandingActivity.",
+      "If user is logged in, they go to MainActivity.",
+      "If user is admin, expose an Admin button/menu item that opens AdminDashboardActivity.",
+      "Implement sign-out button that clears session and returns to AuthLandingActivity."
+    ]
+  },
+  "firebase_setup": {
+    "console_link": "https://console.firebase.google.com/",
+    "create_project_steps": [
+      "Create a Firebase project for the app.",
+      "Add Android app using the exact package name from AndroidManifest.",
+      "Download google-services.json and place it in app/ (app/google-services.json).",
+      "Enable Authentication providers: Email/Password and Google.",
+      "Enable Firestore database.",
+      "Enable Analytics (recommended).",
+      "Enable Crashlytics (recommended).",
+      "Enable Performance Monitoring (recommended)."
+    ],
+    "gradle_dependencies": [
+      "com.google.gms:google-services",
+      "com.google.firebase:firebase-auth-ktx",
+      "com.google.android.gms:play-services-auth",
+      "com.google.firebase:firebase-firestore-ktx",
+      "com.google.firebase:firebase-analytics-ktx",
+      "com.google.firebase:firebase-crashlytics-ktx",
+      "com.google.firebase:firebase-perf-ktx (optional)"
+    ],
+    "notes": [
+      "Do NOT hardcode any 'master credentials' in the app.",
+      "Admin should be based on email allowlist and/or custom claims."
+    ]
+  },
+  "data_model": {
+    "firestore_collections": {
+      "users": {
+        "doc_id": "uid",
+        "fields": {
+          "email": "string",
+          "displayName": "string|null",
+          "photoUrl": "string|null",
+          "createdAt": "timestamp",
+          "lastLoginAt": "timestamp",
+          "provider": "string (google|password|mixed)",
+          "isAdmin": "boolean (derived from allowlist OR claim; store for convenience but never trust only client value)"
+        }
+      },
+      "marketing_opt_in": {
+        "doc_id": "uid",
+        "fields": {
+          "email": "string",
+          "optInDeals": "boolean",
+          "optInTimestamp": "timestamp",
+          "source": "string (in_app_checkbox)",
+          "lastUpdated": "timestamp"
+        }
+      },
+      "events_rollup_daily": {
+        "doc_id": "YYYY-MM-DD",
+        "fields": {
+          "activeUsers": "number",
+          "photoConversions": "number",
+          "videoConversions": "number",
+          "paywallViews": "number",
+          "purchasesLifetime299": "number",
+          "purchasesVideo1999": "number",
+          "adImpressions": "number"
+        }
+      }
+    },
+    "privacy_rules": [
+      "Only the signed-in user can read/write their own users/{uid} document.",
+      "Only the signed-in user can read/write their own marketing_opt_in/{uid} document.",
+      "Only admin can read events_rollup_daily and any export lists."
+    ]
+  },
+  "marketing_and_email": {
+    "important_policy": "You must NOT silently send users' emails to yourself. You MUST ask for explicit opt-in consent for deals/updates.",
+    "ui_requirements": [
+      "In settings or paywall, show a checkbox: 'Send me deals & updates'. Default OFF.",
+      "Only if user enables opt-in, store marketing_opt_in/{uid} with optInDeals=true and timestamp.",
+      "Provide a visible way to opt out (toggle off)."
+    ],
+    "sending_deals_options": [
+      {
+        "option": "Push notifications (FCM)",
+        "what_you_get": "Send promo announcements without collecting emails",
+        "requires": [
+          "Firebase Cloud Messaging",
+          "User permission prompt for notifications (Android 13+)"
+        ]
+      },
+      {
+        "option": "Email campaigns via provider",
+        "what_you_get": "Send email promos to users who opted in",
+        "recommended_providers": [
+          "Mailchimp",
+          "Brevo (Sendinblue)",
+          "ConvertKit",
+          "SendGrid (via Cloud Functions)"
+        ],
+        "requires": [
+          "Export opt-in list (admin only) OR sync to provider using server-side integration",
+          "Comply with unsubscribe requirements"
+        ]
+      }
+    ],
+    "admin_tools_required": [
+      "AdminDashboard: export opted-in emails (CSV) OR show list in-app (admin only).",
+      "AdminDashboard: send push promo (if using FCM topics) to all users or opted-in segment."
+    ]
+  },
+  "admin_dashboard": {
+    "access_control": [
+      "AdminDashboardActivity must verify admin status on load.",
+      "If not admin, immediately finish() and show 'Unauthorized'."
+    ],
+    "features": [
+      "Show installs/active users (from Firebase Analytics dashboard link + in-app rollups if implemented).",
+      "Show conversions: photo/video counts (from analytics events).",
+      "Show purchase counts: $2.99 and $19.99 (from billing + analytics).",
+      "Show crash-free users and recent crashes (Crashlytics deep link optional).",
+      "Show marketing opt-in count and export list (admin only)."
+    ],
+    "recommended_events_to_log": [
+      "auth_signup",
+      "auth_login",
+      "paywall_view",
+      "purchase_attempt",
+      "purchase_success",
+      "purchase_restore",
+      "convert_photo_start",
+      "convert_photo_success",
+      "convert_video_start",
+      "convert_video_success",
+      "quota_blocked_video",
+      "ads_impression (if applicable)"
+    ]
+  },
+  "google_sign_in": {
+    "requirements": [
+      "Configure SHA-1 in Firebase Project Settings (needed for some Google services and smoother sign-in).",
+      "Use GoogleSignInClient to start sign-in flow.",
+      "Exchange Google ID token for Firebase credential and sign in via FirebaseAuth."
+    ],
+    "notes": [
+      "Make sure your package name matches Firebase app registration exactly.",
+      "Use Play App Signing SHA-1 later once uploaded to Play Console."
+    ]
+  },
+  "security_and_play_store_compliance": {
+    "must_do": [
+      "No master login/backdoor credentials in code.",
+      "No silent email forwarding.",
+      "Only collect emails for deals if user opts in.",
+      "Provide opt-out toggle.",
+      "Use HTTPS-only for any endpoints.",
+      "Follow Google Play User Data policy; add Privacy Policy link in app + store listing."
+    ],
+    "recommended": [
+      "Use Firebase App Check to reduce abuse (optional).",
+      "Use Remote Config for paywall copy experiments (optional)."
+    ]
+  },
+  "implementation_order": [
+    "1) Add Firebase + google-services.json + Gradle dependencies",
+    "2) Implement AuthLandingActivity + EmailLoginActivity + Google Sign-In",
+    "3) Create Firestore users/{uid} and marketing_opt_in/{uid} writes after login",
+    "4) Add Admin gating by allowed_admin_emails",
+    "5) Add AdminDashboardActivity basic UI + metrics placeholders",
+    "6) Add Analytics events for conversions + paywall + purchases",
+    "7) Add optional push promos (FCM) OR export opt-in emails for email campaigns"
+  ],
+  "final_acceptance_criteria": [
+    "Users can sign up/log in with Email/Password and with Google.",
+    "User sessions persist across app restarts.",
+    "Only your two emails see AdminDashboard.",
+    "Opt-in marketing is explicit and stored only when user enables it.",
+    "You can view app health via Analytics + Crashlytics, and see core usage events."
+  ]
+}
+
+
+
+
+
+
+
+
+{
+  "project": "HeicConverter",
+  "module": "app",
+  "purpose": "Foreground + Media permissions for image and video conversion",
+  "android_versions_supported": "Android 8 (API 26) through Android 14+",
+  "manifest_permissions": {
+    "required": [
+      {
+        "permission": "android.permission.READ_MEDIA_IMAGES",
+        "description": "Required for reading HEIC, JPG, PNG and other image formats on Android 13+."
+      },
+      {
+        "permission": "android.permission.READ_MEDIA_VIDEO",
+        "description": "Required for reading MOV, MP4, HEVC and other video formats on Android 13+."
+      },
+      {
+        "permission": "android.permission.READ_EXTERNAL_STORAGE",
+        "maxSdkVersion": 32,
+        "description": "Required for reading images and videos on Android 12 and below."
+      },
+      {
+        "permission": "android.permission.FOREGROUND_SERVICE",
+        "description": "Required to run long video conversions in a foreground service."
+      },
+      {
+        "permission": "android.permission.POST_NOTIFICATIONS",
+        "description": "Required on Android 13+ to show conversion progress notifications."
+      }
+    ],
+    "optional_if_needed": [
+      {
+        "permission": "android.permission.WRITE_EXTERNAL_STORAGE",
+        "maxSdkVersion": 28,
+        "description": "Only required if supporting legacy external file writing on very old Android versions."
+      }
+    ]
+  },
+  "foreground_service_configuration": {
+    "manifest_service_entry": {
+      "name": ".VideoConvertService",
+      "exported": "false",
+      "foregroundServiceType": "mediaProcessing"
+    },
+    "notification_channel": {
+      "channel_id": "video_conversion_channel",
+      "importance": "IMPORTANCE_LOW",
+      "description": "Shows progress of long video conversions"
+    },
+    "requirements": [
+      "Service must call startForeground() immediately after starting.",
+      "Must display ongoing notification with progress bar.",
+      "Service must stopSelf() after conversion completes."
+    ]
+  },
+  "android_manifest_snippet": {
+    "permissions": [
+      "<uses-permission android:name=\"android.permission.READ_MEDIA_IMAGES\" />",
+      "<uses-permission android:name=\"android.permission.READ_MEDIA_VIDEO\" />",
+      "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" android:maxSdkVersion=\"32\" />",
+      "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\" />",
+      "<uses-permission android:name=\"android.permission.POST_NOTIFICATIONS\" />"
+    ],
+    "service_declaration": [
+      "<service",
+      "    android:name=\".VideoConvertService\"",
+      "    android:exported=\"false\"",
+      "    android:foregroundServiceType=\"mediaProcessing\" />"
+    ]
+  },
+  "runtime_permission_notes": {
+    "required_runtime_requests": [
+      "READ_MEDIA_IMAGES (Android 13+)",
+      "READ_MEDIA_VIDEO (Android 13+)",
+      "READ_EXTERNAL_STORAGE (Android 12 and below)",
+      "POST_NOTIFICATIONS (Android 13+)"
+    ],
+    "not_runtime": [
+      "FOREGROUND_SERVICE is manifest-only and does NOT require runtime request."
+    ]
+  },
+  "best_practices": [
+    "Always check permission before starting file picker.",
+    "If permission denied, show clear dialog explaining why conversion needs access.",
+    "Do not request permissions until user taps 'Select File' to avoid Play policy issues.",
+    "If user denies notifications, still allow conversion but warn that background processing may not show progress."
+  ],
+  "scoped_storage_compliance": [
+    "Use Storage Access Framework (ACTION_OPEN_DOCUMENT) for file selection.",
+    "Use ContentResolver to read input URIs.",
+    "Use MediaStore for saving converted files to gallery.",
+    "Avoid direct file path access where possible."
+  ],
+  "play_store_compliance_notes": [
+    "App must clearly explain why media access is required.",
+    "Foreground service must only run while conversion is active.",
+    "Do not abuse foreground service for persistent background behavior."
+  ]
+}
+
+{
+  "project": "HeicConverter (Android)",
+  "date": "2026-02-14",
+  "priority": "P0",
+  "goal": "Wire billing + quotas + ads + background-safe video conversion",
+  "summary": [
+    "BillingManager.kt must be connected to PaywallActivity.kt purchase buttons for $2.99 and $19.99 products.",
+    "MainActivity.kt must enforce quotas via QuotaManager.kt (e.g., block video conversion for FREE users; allow photos; allow 1 video/day for lifetime-basic).",
+    "AdMob must be reconnected: activity_main.xml needs AdView; MainActivity.kt must call MobileAds.initialize().",
+    "Long video conversions must run in a Foreground Service to prevent failure when the user backgrounds the app."
+  ],
+  "assumptions": {
+    "billing_library": "com.android.billingclient:billing-ktx",
+    "admob_library": "com.google.android.gms:play-services-ads",
+    "video_engine": "FFmpegKit (or your chosen converter backend)",
+    "products": {
+      "lifetime_basic_2_99": "ONE_TIME",
+      "video_unlimited_19_99": "ONE_TIME",
+      "optional_adfree_2_99_month": "SUBSCRIPTION (optional)"
+    }
+  },
+  "todo": [
+    {
+      "id": "1_billing_wiring",
+      "title": "Billing Wiring: Connect PaywallActivity buttons to BillingManager purchases",
+      "files": [
+        "app/src/main/java/.../BillingManager.kt",
+        "app/src/main/java/.../PaywallActivity.kt",
+        "app/src/main/java/.../Entitlements.kt (or create)",
+        "app/src/main/java/.../PurchaseRepository.kt (optional)"
+      ],
+      "steps": [
+        "Define product IDs as constants in a single place (BillingProducts.kt).",
+        "In PaywallActivity, set button click listeners to call billingManager.launchPurchaseFlow(productId).",
+        "In BillingManager, implement: queryProductDetails(), launchPurchaseFlow(), acknowledgePurchase(), handlePurchaseUpdates().",
+        "Persist entitlements locally after successful purchase (SharedPreferences/DataStore).",
+        "On app start, restore purchases: billingManager.queryPurchasesAsync() and re-grant entitlements."
+      ],
+      "required_constants": {
+        "PRODUCT_LIFETIME_BASIC": "lifetime_basic_299",
+        "PRODUCT_VIDEO_UNLIMITED": "video_unlimited_1999",
+        "PRODUCT_ADFREE_SUB": "adfree_monthly_299 (optional)"
+      },
+      "entitlements_rules": [
+        "FREE: unlimited photo conversions (or limited if you decide), video conversions blocked.",
+        "LIFETIME_BASIC ($2.99 one-time): unlimited photos + 1 video conversion per day.",
+        "VIDEO_UNLIMITED ($19.99 one-time): unlimited video conversions + unlimited photos.",
+        "ADFREE_SUB ($2.99/mo optional): remove ads; does NOT automatically imply unlimited video unless explicitly bundled."
+      ],
+      "acceptance_criteria": [
+        "Clicking $2.99 triggers Google Play purchase flow and sets entitlement lifetime_basic=true.",
+        "Clicking $19.99 triggers Google Play purchase flow and sets entitlement video_unlimited=true.",
+        "Purchases remain active after reinstall/restore (when Google account has purchase).",
+        "No duplicate purchase errors; purchases are acknowledged."
+      ]
+    },
+    {
+      "id": "2_quota_integration",
+      "title": "Quota Integration: Enforce quotas in MainActivity via QuotaManager",
+      "files": [
+        "app/src/main/java/.../MainActivity.kt",
+        "app/src/main/java/.../QuotaManager.kt",
+        "app/src/main/java/.../Entitlements.kt (or create)",
+        "app/src/main/java/.../ConversionRouter.kt (optional)"
+      ],
+      "steps": [
+        "Create/verify QuotaManager.kt supports: canConvertPhoto(), canConvertVideo(), recordPhotoConversion(), recordVideoConversion(), resetDailyIfNeeded().",
+        "In MainActivity before conversion starts: call quotaManager.resetDailyIfNeeded().",
+        "Block video conversion for FREE: show paywall prompt.",
+        "If lifetime_basic: allow video only if quotaManager.canConvertVideo()==true; else show 'Come back tomorrow' message.",
+        "If video_unlimited: always allow video conversion.",
+        "After successful conversion: quotaManager.recordVideoConversion() or recordPhotoConversion()."
+      ],
+      "acceptance_criteria": [
+        "FREE user cannot start video conversion (button disabled or blocked with message).",
+        "Lifetime basic user can do exactly 1 video conversion per day; subsequent attempts are blocked until next day.",
+        "Video unlimited user can convert videos repeatedly without blocks.",
+        "Quota resets reliably across timezone changes and app restarts."
+      ]
+    },
+    {
+      "id": "3_admob_ui",
+      "title": "AdMob UI + Init: Add AdView to layout + initialize SDK",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml",
+        "app/src/main/java/.../MainActivity.kt",
+        "app/src/main/AndroidManifest.xml",
+        "app/build.gradle"
+      ],
+      "steps": [
+        "Ensure dependency: implementation 'com.google.android.gms:play-services-ads:22.6.0' (or latest you choose).",
+        "Add AdMob App ID meta-data to AndroidManifest.xml.",
+        "Add <com.google.android.gms.ads.AdView .../> to activity_main.xml where you want the banner.",
+        "In MainActivity.onCreate(): call MobileAds.initialize(this).",
+        "Load banner ad via AdRequest unless user is ad-free subscribed (or has ad-free entitlement).",
+        "If ad-free: hide AdView (visibility=GONE) and skip load."
+      ],
+      "manifest_required": {
+        "meta_data_name": "com.google.android.gms.ads.APPLICATION_ID",
+        "meta_data_value": "ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY"
+      },
+      "layout_snippet": {
+        "adView_id": "@+id/adView",
+        "adSize": "BANNER",
+        "adUnitId": "ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ"
+      },
+      "acceptance_criteria": [
+        "Banner loads for FREE users on real device using a real Ad Unit ID (test ads in debug).",
+        "Banner does not load when ad-free entitlement is active.",
+        "No crashes if Google Play services are updating."
+      ]
+    },
+    {
+      "id": "4_foreground_service",
+      "title": "Foreground Service: Move long video conversions into a Foreground Service with notifications",
+      "files": [
+        "app/src/main/java/.../VideoConvertService.kt (create)",
+        "app/src/main/java/.../MainActivity.kt",
+        "app/src/main/AndroidManifest.xml",
+        "app/src/main/java/.../NotificationUtil.kt (optional)"
+      ],
+      "steps": [
+        "Create VideoConvertService as a foreground service: startForeground(notificationId, notification).",
+        "Add notification channel 'video_convert' for Android O+.",
+        "In MainActivity when starting a video conversion: call ContextCompat.startForegroundService(...) and pass input/output URIs via Intent extras.",
+        "Service runs conversion in background thread/coroutine and updates notification progress.",
+        "On completion: broadcast result back to activity (LocalBroadcastManager or a simple BroadcastReceiver) OR post a completion notification with 'Open file' action.",
+        "Handle cancellation: add action button in notification to cancel conversion."
+      ],
+      "manifest_required": [
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.POST_NOTIFICATIONS (Android 13+ if you show notifications)"
+      ],
+      "service_manifest_entry": {
+        "name": ".VideoConvertService",
+        "foregroundServiceType": "dataSync|mediaProcessing (choose appropriate)"
+      },
+      "acceptance_criteria": [
+        "Video conversion continues when app is backgrounded or screen is turned off.",
+        "Notification shows conversion in progress and completes cleanly.",
+        "No ANR/freezing; UI stays responsive."
+      ]
+    }
+  ],
+  "admob_reconnect_notes": {
+    "you_said": "You will have to reconnect AdMob and 'firewhatever' (likely Firebase).",
+    "steps": [
+      "Verify google-services.json exists in app/ if using Firebase (if missing, re-download from Firebase console).",
+      "If AdMob was linked to Firebase, ensure the same packageName and SHA keys are correct.",
+      "For AdMob only, you mainly need: APPLICATION_ID meta-data and correct Ad Unit IDs."
+    ]
+  },
+  "onedrive_android_studio_fix": {
+    "problem": "OneDrive syncing can break Gradle/Android Studio by locking files, changing paths, or causing partial folder hydration ('online-only' files). This can make the project appear missing.",
+    "hard_fix_checklist": [
+      "1) Move the entire Android project OUT of OneDrive folders. Put it in a local dev folder like: C:\\Dev\\HeicConverter or /home/<you>/Dev/HeicConverter.",
+      "2) In OneDrive settings, disable 'Files On-Demand' for the dev folder OR mark the project folder as 'Always keep on this device' BEFORE opening in Android Studio.",
+      "3) In Android Studio: File > Close Project.",
+      "4) Delete only build caches (safe): project/.gradle, project/app/build, and the global Gradle cache if needed.",
+      "5) Re-open the project from the NEW local path (NOT the old OneDrive path).",
+      "6) In Android Studio: File > Invalidate Caches / Restart.",
+      "7) Re-sync Gradle and verify settings.gradle includes ':app'.",
+      "8) If git is being used, re-clone into local dev folder instead of moving."
+    ],
+    "signs_it_is_fixed": [
+      "Android Studio recognizes the Gradle project and 'app' module.",
+      "Gradle sync completes without 'project does not exist' or missing module errors.",
+      "No random file reverts while Android Studio is open."
+    ]
+  },
+  "deliverables": [
+    "PaywallActivity fully wired to BillingManager purchase flow for $2.99 and $19.99 products.",
+    "QuotaManager enforced at conversion start and conversion completion.",
+    "AdMob banner visible only for non-adfree users; MobileAds.initialize added.",
+    "Foreground Service running long video conversions with progress notification."
+  ],
+  "notes_for_gemini": [
+    "Do not change product IDs without also changing them in Google Play Console.",
+    "Implement entitlement persistence in one place (DataStore preferred).",
+    "Do not run long conversions on main thread; use service + background execution."
+  ]
+}
+
+{
+  "project_info": {
+    "name": "HEIC Converter",
+    "package": "com.metanoiaunlimited.heicconverter",
+    "version": "1.0",
+    "description": "A high-performance HEIC to JPG/PNG/WebP converter and MOV to MP4 video re-encoder."
+  },
+  "current_status": {
+    "core_engines": "ImageConverter (Bitmap-based) and VideoConverter (FFmpeg-kit) are implemented.",
+    "build_system": "Gradle sync issues resolved; FFmpeg-kit 6.0 integrated.",
+    "missing_components": [
+      "Full Play Billing integration in PaywallActivity",
+      "Quota enforcement in UI logic",
+      "Foreground service for long video conversions",
+      "AdMob placement in layouts"
+    ]
+  },
+  "monetization_tiers": {
+    "FREE": {
+      "photos_per_day": 5,
+      "videos_per_day": 0,
+      "ads": "Banner + Interstitial (after conversion)",
+      "batch_mode": "Photos only"
+    },
+    "PHOTO_PREMIUM ($2.99)": {
+      "product_id": "photo_premium_unlock",
+      "photos_per_day": "unlimited",
+      "videos_per_day": 1,
+      "ads": "Removed",
+      "batch_mode": "Photos only"
+    },
+    "VIDEO_ULTIMATE ($19.99)": {
+      "product_id": "video_unlimited_lifetime",
+      "photos_per_day": "unlimited",
+      "videos_per_day": "unlimited",
+      "ads": "Removed",
+      "batch_mode": "Photos & Videos"
+    }
+  },
+  "implementation_checklist": {
+    "Step 1: Billing": "Wire BillingManager.kt to PaywallActivity buttons and initialize on app start in HeicConverterApplication.",
+    "Step 2: Quota": "Call QuotaManager.canConvertVideo() in MainActivity before starting FFmpegKit.",
+    "Step 3: UI/Ads": "Add AdView to activity_main.xml and initialize MobileAds in MainActivity.",
+    "Step 4: Reliability": "Move VideoConverter.convertVideo call into a ForegroundService to ensure completion on backgrounding."
+  },
+  "technical_notes": {
+    "ffmpeg_command": "-y -i {in} -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 128k -movflags +faststart {out}",
+    "storage": "Uses Scoped Storage; outputs to Environment.DIRECTORY_PICTURES/HeicConverter and Environment.DIRECTORY_MOVIES/MetanoiaVideos"
+  }
+}

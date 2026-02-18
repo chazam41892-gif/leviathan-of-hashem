@@ -1,0 +1,30 @@
+
+
+
+
+
+
+
+{
+  "project_name": "HeicConverter",
+  "features": {
+    "conversion": "HEIC to other formats using FFmpegKit",
+    "authentication": "Firebase Auth with Google Sign-In",
+    "database": "Cloud Firestore",
+    "monetization": "AdMob",
+    "analytics": "Firebase Analytics",
+    "crash_reporting": "Firebase Crashlytics"
+  },
+  "dependencies": {
+    "firebase_bom": "33.9.0",
+    "admob_version": "23.6.0",
+    "ffmpeg_kit": "6.0.LTS (full-gpl)",
+    "glide": "5.0.5"
+  },
+  "status": {
+    "firebase_plugin": "Applied",
+    "google_services_json": "Missing (Action Required)",
+    "admob_app_id": "Required in AndroidManifest.xml"
+  },
+  "notes": "Ensure google-services.json is placed in the app/ directory and the AdMob App ID is configured in the manifest."
+}

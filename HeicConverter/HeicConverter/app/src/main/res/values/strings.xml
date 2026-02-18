@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Heic Converter</string>
+    <string name="convert_image">Convert Image (HEIC to JPG)</string>
+    <string name="convert_video">Convert Video</string>
+    <string name="free_plan">Free Plan</string>
+    <string name="premium_plan">Premium Plan (Active)</string>
+    <string name="master_override_msg">Master Override Active: Free Access</string>
+    <string name="email_list_info">Get deals on new apps in your inbox!</string>
+
+    <!-- Pricing -->
+    <string name="price_images">$2.99</string>
+    <string name="price_videos">$19.99</string>
+    <string name="buy_unlimited_images">Unlock Mass Image Conversion - $2.99</string>
+    <string name="buy_unlimited_videos">Unlock Mass Video Conversion - $19.99</string>
+
+    <!-- AdMob -->
+    <string name="admob_banner_id">ca-app-pub-3940256099942544/6300978111</string> <!-- Test Banner ID -->
+</resources>

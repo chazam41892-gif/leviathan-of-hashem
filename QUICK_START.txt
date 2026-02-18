@@ -1,0 +1,56 @@
+╔════════════════════════════════════════════════════════════════╗
+║                    HEIC CONVERTER APP                          ║
+║              Built for Metanoia Unlimited LLC                  ║
+╚════════════════════════════════════════════════════════════════╝
+
+🚀 QUICK START GUIDE
+
+1. IMPORT INTO ANDROID STUDIO
+   • Open Android Studio
+   • File → Open → Select "HeicConverter" folder
+   • Wait for Gradle sync
+
+2. BEFORE YOU BUILD - IMPORTANT!
+   ⚠️  Replace test AdMob IDs with your own:
+   
+   File: app/src/main/AndroidManifest.xml (line 28)
+   File: app/src/main/res/layout/activity_main.xml (line 271)
+   
+   See SETUP_GUIDE.md for detailed instructions
+
+3. TEST THE APP
+   • Connect Android device (Android 9.0+)
+   • Click Run button (green play)
+   • Test image conversion
+
+4. SETUP MONETIZATION
+   • Create AdMob account → Get App ID & Ad Unit ID
+   • Create Play Console account → Setup $2.99 in-app product
+   • Product ID MUST be: premium_unlock
+
+5. PUBLISH
+   • Build → Generate Signed Bundle
+   • Upload to Play Console
+   • Complete store listing
+   • Submit for review
+
+📚 DETAILED GUIDES:
+   • README.md - Technical overview
+   • SETUP_GUIDE.md - Complete setup instructions with revenue estimates
+
+💰 MONETIZATION:
+   • Free users: Up to 5 images, with ads
+   • Premium: $2.99 one-time unlock for unlimited conversions
+   • Expected revenue: $55-$5,500/month depending on downloads
+
+🎯 YOUR GOAL: $10,000 ASAP
+   This app can contribute to your goal. Focus on:
+   1. Getting it published quickly
+   2. Marketing to iPhone users who need HEIC conversion
+   3. Optimizing conversion rate to premium
+   4. Building more apps using this template
+
+📞 SUPPORT:
+   Website: www.metanoiaunlimited.com
+
+Built with precision for the Metanoia Empire 👑

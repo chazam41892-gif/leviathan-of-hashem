@@ -1,0 +1,22 @@
+HeicConverter
+├── PROJECT_STRUCTURE.txt
+├── QUICK_START.txt
+├── README.md
+├── SETUP_GUIDE.md
+├── app
+│   ├── build.gradle
+│   ├── proguard-rules.pro
+│   └── src
+│       └── main
+│           ├── AndroidManifest.xml
+│           ├── assets
+│           ├── java
+│           └── res
+├── build.gradle
+├── gradle
+│   └── wrapper
+│       └── gradle-wrapper.properties
+├── gradle.properties
+└── settings.gradle
+
+8 directories, 11 files
