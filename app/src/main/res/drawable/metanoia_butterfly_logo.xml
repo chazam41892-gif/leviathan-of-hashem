@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="280dp"
+    android:height="200dp"
+    android:viewportWidth="280"
+    android:viewportHeight="200">
+    
+    <!-- Butterfly Wings with Gradient -->
+    <path
+        android:fillColor="#8B7BE8"
+        android:pathData="M140,100 Q120,60 80,50 Q60,45 50,60 Q45,75 60,90 Q80,100 100,95 L140,100 Z" />
+    <path
+        android:fillColor="#E94BC7"
+        android:pathData="M140,100 Q160,60 200,50 Q220,45 230,60 Q235,75 220,90 Q200,100 180,95 L140,100 Z" />
+    <path
+        android:fillColor="#8B7BE8"
+        android:pathData="M140,100 Q120,140 80,150 Q60,155 50,140 Q45,125 60,110 Q80,100 100,105 L140,100 Z" />
+    <path
+        android:fillColor="#E94BC7"
+        android:pathData="M140,100 Q160,140 200,150 Q220,155 230,140 Q235,125 220,110 Q200,100 180,105 L140,100 Z" />
+    
+    <!-- Body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M140,80 L140,120 Q142,122 140,120 Q138,122 140,120 Z"
+        android:strokeWidth="4"
+        android:strokeColor="#FFFFFF" />
+    
+    <!-- Metanoia Text -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,175 L60,175 L60,165 L50,165 Z M70,175 L90,165 L90,175 Z M100,165 L100,175 L120,175 L120,165 Z M130,175 Q140,165 150,175 M160,165 L160,175 M170,165 L180,175 L190,165 M200,175 Q210,165 220,175" />
+</vector>

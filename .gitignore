@@ -89,3 +89,8 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+
+# Added by cargo
+
+/target

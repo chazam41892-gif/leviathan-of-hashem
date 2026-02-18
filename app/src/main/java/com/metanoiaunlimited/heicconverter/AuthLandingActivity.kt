@@ -49,13 +49,30 @@ class AuthLandingActivity : AppCompatActivity() {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        // Email/Password Login
+        binding.btnLogin.setOnClickListener {
+            val email = binding.etUsername.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+            
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        navigateToMain()
+                    } else {
+                        Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+
+        // Google Sign In
         binding.btnGoogleSignIn.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             googleSignInLauncher.launch(signInIntent)
-        }
-
-        binding.btnEmailSignIn.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         // If already logged in, go to MainActivity

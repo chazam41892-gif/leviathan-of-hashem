@@ -13,6 +13,24 @@ import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * VideoConverter for iOS/Mac and Android video formats
+ * 
+ * Supported Input Formats (iOS/Mac/Android):
+ * - HEVC/H.265 (video/hevc) - Apple's primary video codec
+ * - H.264/AVC (video/avc) - Universal compatibility
+ * - MPEG-4 (video/mp4v-es) - Legacy format
+ * - ProRes (video/prores) - Professional Apple codec (limited Android support)
+ * - VP8/VP9 (video/x-vnd.on2.vp8, video/x-vnd.on2.vp9) - Open formats
+ * 
+ * Container Formats:
+ * - MOV (Apple QuickTime)
+ * - MP4 (Universal)
+ * - M4V (Apple iTunes)
+ * 
+ * Output Format:
+ * - H.264/AVC in MP4 container for maximum compatibility
+ */
 class VideoConverter(private val context: Context) {
 
     enum class VideoOutputFormat {
@@ -103,10 +121,22 @@ class VideoConverter(private val context: Context) {
             
             onProgress("Input: ${inputMime} ${width}x${height}")
 
-            // If already H.264, just remux (faster)
-            if (inputMime == "video/avc" || inputMime == "video/mp4v-es") {
-                onProgress("Already H.264, remuxing...")
+            // Apple/iOS formats that need transcoding:
+            // - video/hevc (HEVC/H.265) - Most common Apple format
+            // - video/mp4v-es (MPEG-4 Part 2) - Older Apple format
+            // - video/3gpp - Legacy format
+            // Already H.264 (video/avc) - just remux for faster processing
+            
+            if (inputMime == "video/avc") {
+                onProgress("Already H.264, remuxing for MP4 compatibility...")
                 return remuxOnly(inputPath, outputPath, onProgress)
+            }
+
+            // Log codec info for Apple formats
+            when (inputMime) {
+                "video/hevc" -> onProgress("Detected HEVC (iOS/Mac) - transcoding to H.264")
+                "video/mp4v-es" -> onProgress("Detected MPEG-4 (older Apple) - transcoding to H.264")
+                else -> onProgress("Detected $inputMime - transcoding to H.264")
             }
 
             // Create H.264 encoder

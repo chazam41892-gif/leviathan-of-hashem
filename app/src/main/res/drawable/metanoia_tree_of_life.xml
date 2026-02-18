@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="300dp"
+    android:viewportWidth="200"
+    android:viewportHeight="300">
+    
+    <!-- Tree of Life / Kabbalah Sacred Geometry -->
+    
+    <!-- Outer Circle -->
+    <path
+        android:strokeColor="#8B7BE8"
+        android:strokeWidth="2"
+        android:fillColor="#00FFFFFF"
+        android:pathData="M100,20 A80,80 0 1,1 99.9,20 Z" />
+    
+    <!-- Top Sephirah (Kether) -->
+    <path
+        android:fillColor="#E94BC7"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M100,25 A15,15 0 1,1 99.9,25 Z" />
+    
+    <!-- Second Row (Chokmah & Binah) -->
+    <path
+        android:fillColor="#8B7BE8"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M70,68 A12,12 0 1,1 69.9,68 Z" />
+    <path
+        android:fillColor="#8B7BE8"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M130,68 A12,12 0 1,1 129.9,68 Z" />
+    
+    <!-- Third Row (Chesed & Gevurah) -->
+    <path
+        android:fillColor="#4DA6FF"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M70,118 A12,12 0 1,1 69.9,118 Z" />
+    <path
+        android:fillColor="#4DA6FF"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M130,118 A12,12 0 1,1 129.9,118 Z" />
+    
+    <!-- Center (Tiferet) -->
+    <path
+        android:fillColor="#FFD700"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M100,116 A14,14 0 1,1 99.9,116 Z" />
+    
+    <!-- Fourth Row (Netzach & Hod) -->
+    <path
+        android:fillColor="#8B7BE8"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M70,168 A12,12 0 1,1 69.9,168 Z" />
+    <path
+        android:fillColor="#8B7BE8"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M130,168 A12,12 0 1,1 129.9,168 Z" />
+    
+    <!-- Fifth Row (Yesod) -->
+    <path
+        android:fillColor="#E94BC7"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M100,208 A12,12 0 1,1 99.9,208 Z" />
+    
+    <!-- Bottom (Malkuth) -->
+    <path
+        android:fillColor="#4DA6FF"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M100,245 A15,15 0 1,1 99.9,245 Z" />
+    
+    <!-- Connecting Paths (22 paths of Sefer Yetzirah) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M100,40 L70,68 M100,40 L130,68 M70,80 L130,80 M70,80 L70,118 M130,80 L130,118 M70,130 L100,130 M130,130 L100,130 M70,130 L70,168 M130,130 L130,168 M70,180 L100,208 M130,180 L100,208 M100,220 L100,245" />
+</vector>
+

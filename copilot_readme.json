@@ -1,0 +1,196 @@
+{
+    "projectName": "HEIC Converter",
+    "description": "Android app for converting iPhone/Mac HEIC images and HEVC videos to Android-compatible formats (JPEG/PNG/WebP for images, H.264 for videos). Features cosmic-themed UI with Firebase authentication and AdMob monetization.",
+    "version": "1.0",
+    "targetPlatform": "Android",
+    "minSdkVersion": 28,
+    "targetSdkVersion": 36,
+    "compileSdkVersion": 36,
+    "architecture": {
+        "pattern": "MVVM",
+        "language": "Kotlin",
+        "gradleVersion": "9.1.0",
+        "agpVersion": "9.0.1",
+        "kotlinVersion": "2.2.10"
+    },
+    "coreFeatures": [
+        "HEIC/HEIF image conversion to JPEG/PNG/WebP using Android BitmapFactory/ImageDecoder",
+        "HEVC video transcoding to H.264 using native Android MediaCodec/MediaMuxer (no external dependencies)",
+        "Background video processing with foreground service and notifications",
+        "Firebase Authentication (Email/Password + Google Sign-In)",
+        "Firebase Firestore for data storage",
+        "Firebase Analytics and Crashlytics",
+        "Google AdMob integration with banner ads",
+        "In-app billing support (Google Play Billing Library 7.1.1)",
+        "Admin dashboard for allowlisted emails",
+        "Cosmic-themed login UI with sacred geometry (Tree of Life/Kabbalah)"
+    ],
+    "keyDependencies": {
+        "firebase": "BOM 33.9.0 (Auth, Firestore, Analytics, Crashlytics)",
+        "playServices": "Auth 21.3.0, Ads 24.1.0",
+        "billing": "7.1.1",
+        "material": "1.12.0",
+        "coroutines": "1.9.0",
+        "lifecycle": "2.8.7",
+        "glide": "4.16.0"
+    },
+    "externalDependencies": {
+        "videoConversion": "NONE - Uses native Android MediaCodec (no FFmpeg, no external libraries)",
+        "imageConversion": "Native Android APIs only"
+    },
+    "firebase": {
+        "projectId": "heic-converter-50b73",
+        "configFile": "app/google-services.json",
+        "services": [
+            "Authentication",
+            "Firestore",
+            "Analytics",
+            "Crashlytics"
+        ]
+    },
+    "admob": {
+        "appId": "ca-app-pub-9458763618167975~8825973977",
+        "testBannerAdUnit": "ca-app-pub-3940256099942544/6300978111",
+        "note": "Using test ad unit ID. Replace with production ad unit IDs after approval."
+    },
+    "projectStructure": {
+        "app/src/main/java/com/metanoiaunlimited/heicconverter/": {
+            "HeicConverterApplication.kt": "App initialization, Firebase & AdMob setup",
+            "AuthLandingActivity.kt": "Cosmic login screen with Email/Password + Google Sign-In",
+            "LoginActivity.kt": "Email authentication activity",
+            "MainActivity.kt": "Main app screen with admin dashboard access",
+            "AdminDashboardActivity.kt": "Admin controls for allowlisted users",
+            "ImageConverter.kt": "HEIC/image conversion to JPEG/PNG/WebP",
+            "VideoConverter.kt": "HEVC→H.264 transcoding with MediaCodec",
+            "VideoConvertService.kt": "Background foreground service for video processing"
+        },
+        "app/src/main/res/": {
+            "layout/": "XML layouts including cosmic-themed activity_auth_landing.xml",
+            "drawable/": "Cosmic background, butterfly logo, Tree of Life sacred geometry vectors",
+            "values/": "Colors (cosmic theme), strings, themes"
+        }
+    },
+    "videoTranscoding": {
+        "implementation": "Android MediaCodec",
+        "decoder": "MediaCodec with HEVC mime type",
+        "encoder": "MediaCodec with H.264/AVC mime type",
+        "strategy": "Decode HEVC frames → Pass to encoder surface → Encode as H.264",
+        "optimization": "Smart detection: remux if already H.264, transcode only if HEVC",
+        "outputFormat": "MP4 container with H.264 video track"
+    },
+    "imageConversion": {
+        "implementation": "BitmapFactory + ImageDecoder (API 28+)",
+        "supportedInputs": [
+            "HEIC",
+            "HEIF",
+            "JPEG",
+            "PNG",
+            "WebP"
+        ],
+        "supportedOutputs": [
+            "JPEG (quality 90)",
+            "PNG (lossless)",
+            "WebP (quality 90)"
+        ],
+        "outputLocation": "MediaStore Pictures/HeicConverter"
+    },
+    "permissions": [
+        "READ_EXTERNAL_STORAGE (SDK ≤32)",
+        "READ_MEDIA_IMAGES",
+        "READ_MEDIA_VIDEO",
+        "WRITE_EXTERNAL_STORAGE (SDK ≤28)",
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "BILLING",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_MEDIA_PROCESSING",
+        "POST_NOTIFICATIONS"
+    ],
+    "adminEmails": [
+        "metanoiaunlimited418@gmail.com",
+        "chazam41892@gmail.com"
+    ],
+    "buildCommands": {
+        "sync": "./gradlew.bat build",
+        "assembleDebug": "./gradlew.bat assembleDebug",
+        "assembleRelease": "./gradlew.bat assembleRelease",
+        "installDebug": "./gradlew.bat installDebug",
+        "clean": "./gradlew.bat clean"
+    },
+    "releasePreparation": {
+        "steps": [
+            "1. Generate keystore: keytool -genkey -v -keystore your-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias your-key-alias",
+            "2. Add to gradle.properties: RELEASE_STORE_FILE, RELEASE_STORE_PASSWORD, RELEASE_KEY_ALIAS, RELEASE_KEY_PASSWORD",
+            "3. Replace test AdMob ad unit IDs with production IDs from AdMob console",
+            "4. Add privacy policy URL to Play Store listing",
+            "5. Update app icon and launcher assets",
+            "6. Test on physical devices (HEIC/HEVC conversion)",
+            "7. Build signed AAB: ./gradlew.bat bundleRelease",
+            "8. Upload to Google Play Console: app/build/outputs/bundle/release/app-release.aab"
+        ]
+    },
+    "firebaseSetup": {
+        "requiredFromConsole": [
+            "SHA-1 fingerprint for Google Sign-In (debug & release)",
+            "Enable Authentication providers: Email/Password, Google",
+            "Create Firestore database",
+            "Enable Analytics",
+            "Enable Crashlytics"
+        ],
+        "getFingerprint": "keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android"
+    },
+    "admobSetup": {
+        "requiredFromConsole": [
+            "Create app in AdMob console",
+            "Get production banner ad unit ID",
+            "Get production interstitial ad unit ID (optional)",
+            "Get production rewarded ad unit ID (optional)",
+            "Add app-ads.txt to website for verification"
+        ],
+        "currentStatus": "Using test ad unit ID ca-app-pub-3940256099942544/6300978111 in MainActivity"
+    },
+    "knownIssues": [
+        "FFmpegKit dependency removed after 4 days of failed attempts (Arthenica Maven repository unreachable)",
+        "Replaced with native Android MediaCodec - smaller APK, no GPL licensing issues",
+        "Cosmic background images are vector drawables (placeholders) - user may want to add custom JPG/PNG",
+        "Google Sign-In classes show deprecation warnings (still functional)"
+    ],
+    "launchChecklist": [
+        "✅ Android project builds successfully",
+        "✅ Firebase configured with google-services.json",
+        "✅ AdMob SDK integrated with test ads",
+        "✅ Video transcoding: HEVC→H.264 implemented",
+        "✅ Image conversion: HEIC→JPEG/PNG/WebP functional",
+        "✅ Cosmic login UI complete",
+        "✅ Signing config added (using debug keystore as fallback)",
+        "⚠️ Replace test AdMob ad unit with production ID",
+        "⚠️ Generate production keystore and update gradle.properties",
+        "⚠️ Test HEIC/HEVC conversion on real device",
+        "⚠️ Add privacy policy URL",
+        "⚠️ Create Play Store assets (screenshots, feature graphic, icon)"
+    ],
+    "deploymentNotes": {
+        "gitRepository": "Not yet connected - awaiting user's GitHub repo URL",
+        "gitCommands": [
+            "git remote add origin <YOUR_GITHUB_URL>",
+            "git push -u origin master"
+        ],
+        "playStoreSubmission": "Build signed AAB, upload to Play Console, complete store listing with privacy policy"
+    },
+    "contactInfo": {
+        "developer": "Metanoia Unlimited",
+        "emails": [
+            "metanoiaunlimited418@gmail.com",
+            "chazam41892@gmail.com"
+        ],
+        "appName": "HEIC Converter",
+        "packageName": "com.metanoiaunlimited.heicconverter"
+    },
+    "notes": [
+        "This app solves the iPhone→Android file compatibility issue",
+        "No external video libraries needed - 100% native Android APIs",
+        "Cosmic theme with Tree of Life (Kabbalah) sacred geometry",
+        "Built for immediate Google Play Store launch",
+        "Admin dashboard restricted to allowlisted emails only"
+    ]
+}

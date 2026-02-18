@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
 import com.google.firebase.auth.FirebaseAuth
 import com.metanoiaunlimited.heicconverter.databinding.ActivityMainBinding
 
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AuthLandingActivity::class.java))
             finish()
         }
+        
+        // Load AdMob banner
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
         
         // TODO: Implement HEIC conversion logic as per project scope
     }
