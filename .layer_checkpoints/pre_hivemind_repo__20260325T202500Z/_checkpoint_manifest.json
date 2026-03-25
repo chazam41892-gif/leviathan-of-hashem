@@ -1,0 +1,12 @@
+{
+  "checkpoint_name": "pre_hivemind_repo",
+  "timestamp": "20260325T202500Z",
+  "project_root": "/home/ubuntu/leviathan-of-hashem",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "54a1a27da209f6bde068d26b2370fd9511a9d9b7dc64ca600599f547e86b47e6"
+    }
+  ],
+  "total_files": 1
+}
